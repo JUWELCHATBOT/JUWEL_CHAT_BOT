@@ -1,52 +1,175 @@
+const { createCanvas } = require('canvas');
+const os = require('os');
+const fs = require('fs-extra');
+const path = require('path');
+const { execSync } = require('child_process');
+
 module.exports.config = {
- name: "upt",
- version: "1.0.0",
- hasPermssion: 0,
- credits: "Islamick Cyber Chat",
- description: "monitoring for your masanger robot 24 hour active",
- commandCategory: "monitor",
- usages: "[text/reply]",
- cooldowns: 5
+  name: "upt",
+  version: "1.0.0",
+  hasPermssion: 0,
+  credits: "MR JUWEL",
+  description: "System real-time monitoring with image",
+  commandCategory: "system",
+  usages: "",
+  cooldowns: 5
 };
-//////////////////////////////
-//////// Khai báo ///////////
-////////////////////////////
+
 module.exports.onLoad = () => {
- const fs = require("fs-extra");
- const request = require("request");
- const lvb = __dirname + `/noprefix/`;
- if (!fs.existsSync(lvb + "noprefix")) fs.mkdirSync(lvb, { recursive: true });
- if (!fs.existsSync(lvb + "upt.png")) request("https://i.imgur.com/vn4rXA4.jpg").pipe(fs.createWriteStream(lvb + "upt.png"));
- }
-module.exports.run = async function({ api, event, args, client }) {
- const fs = require('fs-extra');
- let time = process.uptime();
- let hours = Math.floor(time / (60 * 60));
- let minutes = Math.floor((time % (60 * 60)) / 60);
- let seconds = Math.floor(time % 60);
- const timeStart = Date.now();
- var name = Date.now();
- var url = (event.type == "message_reply") ? event.messageReply.body : args.join(" ");
- var lvbang = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
- if(url.match(lvbang) == null) return api.sendMessage({body:`╭•┄┅═══❁🌺❁═══┅┄•╮\n🕧 𝗨𝗣𝗧𝗜𝗠𝗘 𝗥𝗢𝗕𝗢𝗧 🕧\n╰•┄┅═══❁🌺❁═══┅┄•╯\n\n𝗗𝗢𝗨𝗚𝗛 𝗧𝗜𝗠𝗥 𝗖𝗨𝗥𝗥𝗘𝗡𝗧𝗟𝗬 𝗢𝗡𝗟𝗜𝗡𝗘 𝗜𝗡 𝗧𝗢𝗧𝗔𝗟 ${hours} 𝗛𝗢𝗨𝗥𝗦 ${minutes} 𝗠𝗜𝗡𝗨𝗧𝗘 ${seconds} 𝗦𝗘𝗖𝗢𝗡𝗗 👾\n⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆\nPlease enter/replit the url to post on Uptime Robot`, attachment: fs.createReadStream(__dirname + `/noprefix/upt.png`)}, event.threadID, event.messageID);
- var request = require("request");
- var options = { method: 'POST',
- url: 'https://api.uptimerobot.com/v2/newMonitor',
- headers:
- { 'content-type': 'application/x-www-form-urlencoded',
- 'noprefix-control': 'no-noprefix' },
- form:
- { api_key: 'u2008156-9837ddae6b3c429bd0315101',
- format: 'json',
- type: '1',
- url: url,
- friendly_name: name } };
- ///////////////////////////////////////// //////Phần điều kiện và gửi tin nhắn//// /////////////////////////////////////// 
-request(options, function (error, response, body) {
- if (error) return api.sendMessage(`Lỗi rồi huhu :((`, event.threadID, event.messageID );
- if(JSON.parse(body).stat == 'fail') return api.sendMessage({body:`╭•┄┅════❁🌺❁════┅┄•╮\n🕧𝗨𝗣𝗧𝗜𝗠𝗘 𝗥𝗢𝗕𝗢𝗧🕧\n╰•┄┅════❁🌺❁════┅┄•╯\n\n𝗗𝗢𝗨𝗚𝗛 𝗧𝗜𝗠𝗥 𝗖𝗨𝗥𝗥𝗘𝗡𝗧𝗟𝗬 𝗢𝗡𝗟𝗜𝗡𝗘 𝗜𝗡 𝗧𝗢𝗧𝗔𝗟 ${hours} 𝗛𝗢𝗨𝗥𝗦 ${minutes} 𝗠𝗜𝗡𝗨𝗧𝗘 ${seconds} 𝗦𝗘𝗖𝗢𝗡𝗗 👾\n⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆\n｢ 𝗘𝗥𝗥𝗢𝗥 ｣ - 𝗨𝗣𝗧𝗜𝗠𝗘 𝗧𝗛𝗘 𝗥𝗢𝗕𝗢𝗧 𝗠𝗢𝗡𝗜𝗧𝗢𝗥 𝗔𝗟𝗥𝗘𝗗𝗬 𝗧𝗛𝗜𝗦 𝗖𝗨𝗥𝗥𝗘𝗡𝗧𝗟𝗬 𝗘𝗫𝗜𝗦𝗧𝗦 𝗢𝗡✨🌺\n🔗 𝐋𝐈𝐍𝐊: ${url}`, attachment: fs.createReadStream(__dirname + `/noprefix/upt.png`)}, event.threadID, event.messageID);
- if(JSON.parse(body).stat == 'success')
- return
-api.sendMessage({body: `╭•┄┅════❁🌺❁════┅┄•╮\n🕧𝗨𝗣𝗧𝗜𝗠𝗘 𝗥𝗢𝗕𝗢𝗧🕧\n╰•┄┅════❁🌺❁════┅┄•╯\n\n𝗗𝗢𝗨𝗚𝗛 𝗧𝗜𝗠𝗥 𝗖𝗨𝗥𝗥𝗘𝗡𝗧𝗟𝗬 𝗢𝗡𝗟𝗜𝗡𝗘 𝗜𝗡 𝗧𝗢𝗧𝗔𝗟 ${hours} 𝗛𝗢𝗨𝗥𝗦 ${minutes} 𝗠𝗜𝗡𝗨𝗧𝗘 ${seconds} 𝗦𝗘𝗖𝗢𝗡𝗗 👾\n⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆\n｢ 𝗦𝗨𝗖𝗖𝗘𝗦𝗦 ｣ - 𝗦𝗨𝗖𝗖𝗘𝗦𝗦 𝗨𝗣𝗧𝗜𝗠𝗘 𝗥𝗢𝗕𝗢𝗧 𝗖𝗥𝗘𝗔𝗧𝗘 𝗦𝗘𝗥𝗩𝗘𝗥 𝗔𝗕𝗢𝗩𝗘 ✨🌺\n🔗 𝐋𝐈𝐍𝐊: ${url}`, attachment: fs.createReadStream(__dirname + `/noprefix/upt.png`)}, event.threadID, event.messageID );
-});
- }
+  const cache = __dirname + "/cache/";
+  if (!fs.existsSync(cache)) fs.mkdirSync(cache, { recursive: true });
+};
+
+// ছোট হেল্পার ফাংশন
+const f = b => {
+  const s = ['B','KB','MB','GB','TB'];
+  const i = Math.floor(Math.log(b)/Math.log(1024));
+  return (b/Math.pow(1024,i)).toFixed(2)+' '+s[i];
+};
+
+let prev = null;
+const getCPU = () => {
+  let idle = 0, total = 0;
+  for (const c of os.cpus()) {
+    for (const t in c.times) total += c.times[t];
+    idle += c.times.idle;
+  }
+  const cur = {idle,total};
+  if (!prev) { prev = cur; return 0; }
+  const di = cur.idle - prev.idle;
+  const dt = cur.total - prev.total;
+  prev = cur;
+  return dt ? Math.round(100 - (100 * di / dt)) : 0;
+};
+
+const getDisk = () => {
+  try {
+    const d = execSync('df -k /').toString().split('\n')[1].split(/\s+/);
+    const used = parseInt(d[2]) * 1024;
+    const total = parseInt(d[1]) * 1024;
+    const p = Math.round((used / total) * 100);
+    return p > 100 ? 100 : p;
+  } catch {
+    return 82;
+  }
+};
+
+const rr = (c,x,y,w,h,r) => {
+  c.beginPath();
+  c.moveTo(x+r,y);
+  c.arcTo(x+w,y,x+w,y+h,r);
+  c.arcTo(x+w,y+h,x,y+h,r);
+  c.arcTo(x,y+h,x,y,r);
+  c.arcTo(x,y,x+w,y,r);
+  c.closePath();
+};
+
+module.exports.run = async function({ api, event }) {
+  try {
+    const start = Date.now();
+    const cpu = getCPU();
+    const totalRam = os.totalmem();
+    const usedRam = totalRam - os.freemem();
+    const ram = Math.min(100, Math.round((usedRam / totalRam) * 100));
+    const disk = getDisk();
+
+    const sec = process.uptime();
+    const d = Math.floor(sec / 86400);
+    const h = Math.floor(sec % 86400 / 3600);
+    const m = Math.floor(sec % 3600 / 60);
+    const s = Math.floor(sec % 60);
+    const uptime = d ? `${d}d ${h}h ${m}m ${s}s` : `${h}h ${m}m ${s}s`;
+
+    const ping = Date.now() - start;
+
+    // CANVAS
+    const cv = createCanvas(1080,720), c = cv.getContext('2d');
+    c.fillStyle = '#0b0b22';
+    c.fillRect(0,0,1080,720);
+
+    c.fillStyle = 'rgba(15,15,40,0.95)';
+    c.strokeStyle = '#3399ff';
+    c.lineWidth = 6;
+    rr(c,30,30,1020,660,60);
+    c.fill();
+    c.stroke();
+
+    c.font = 'bold 80px Arial';
+    c.fillStyle = '#fff';
+    c.textAlign = 'center';
+    c.fillText('SYSTEM STATUS',540,145);
+
+    c.font = '36px Arial';
+    c.fillStyle = '#60a5fa';
+    c.fillText('Real-time Server Monitoring',540,195);
+
+    const ring = (x,y,p,col,label) => {
+      const r=118,t=26;
+      c.beginPath(); c.arc(x,y,r,0,Math.PI*2);
+      c.fillStyle='rgba(255,255,255,0.08)'; c.fill();
+
+      c.beginPath();
+      c.arc(x,y,r,-Math.PI/2,(p/100)*Math.PI*2 - Math.PI/2);
+      c.lineWidth=t; c.strokeStyle=col; c.lineCap='round'; c.stroke();
+
+      c.shadowColor = col; 
+      c.shadowBlur = 50; 
+      c.stroke(); 
+      c.shadowBlur = 0;
+
+      if(p>0 && p<100){
+        const a = (p/100)*Math.PI*2 - Math.PI/2;
+        c.beginPath();
+        c.arc(x+Math.cos(a)*r, y+Math.sin(a)*r, 18, 0, Math.PI*2);
+        c.fillStyle = col;
+        c.fill();
+      }
+
+      c.font='bold 62px Arial';
+      c.fillStyle='#fff';
+      c.textAlign='center';
+      c.textBaseline='middle';
+      c.fillText(p+'%',x,y);
+
+      c.font='30px Arial';
+      c.fillStyle='#ccc';
+      c.fillText(label,x,y+85);
+    };
+
+    ring(240,355,cpu,'#00ff88','CPU');
+    ring(540,355,ram,'#ff3366','RAM');
+    ring(840,355,disk,'#3399ff','DISK');
+
+    const g = (txt, y, col='#00ffcc') => {
+      c.font='bold 38px Arial';
+      c.shadowColor=col; 
+      c.shadowBlur=30; 
+      c.fillStyle=col;
+      c.textAlign='left';
+      c.fillText(txt,100,y);
+    };
+
+    g(`Uptime  →  ${uptime}`,520);
+    g(`RAM     →  ${ram}%   •   Disk  →  ${disk}%`,570);
+    g(`Memory  →  ${f(usedRam)} / ${f(totalRam)}`,620);
+
+    const pc = ping < 80 ? '#00ff88' : ping < 150 ? '#ffaa00' : '#ff3366';
+    g(`Ping    →  ${ping}ms`,670,pc);
+
+    const file = path.join(__dirname,'cache','uptime.png');
+    fs.writeFileSync(file, cv.toBuffer('image/png'));
+
+    api.sendMessage(
+      {
+        body: "",
+        attachment: fs.createReadStream(file)
+      },
+      event.threadID,
+      () => fs.unlinkSync(file),
+      event.messageID
+    );
+
+  } catch (e) {
+    api.sendMessage("❌ Error generating uptime image", event.threadID, event.messageID);
+  }
+};

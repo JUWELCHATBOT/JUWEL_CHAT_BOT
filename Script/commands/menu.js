@@ -13,7 +13,7 @@ function listCommands() {
 module.exports.config = {
   name: "menu",
   version: "1.2.0",
-  hasPermssion: 2, // অ্যাডমিন/মডের জন্য
+  hasPermssion: 1, // অ্যাডমিন/মডের জন্য
   credits: "MR JUWEL + ChatGPT",
   description: "বট কন্ট্রোল সেন্টার (মেনু)",
   commandCategory: "system",

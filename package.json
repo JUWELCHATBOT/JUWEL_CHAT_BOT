@@ -1,14 +1,14 @@
 {
-  "name": "shahadat-chat-bot",
+  "name": "juwel-chat-bot",
   "version": "10.0.0",
-  "description": "Made By SHAHADAT SAHU",
+  "description": "Made By MR JUWEL",
   "main": "Main.js",
   "engines": {
     "node": "20.x",
     "npm": ">=10.0.0 <13.0.0"
   },
   "scripts": {
-    "start": "node Sahu.js",
+    "start": "node Juwel.js",
     "login": "node login",
     "test": "node --trace-warnings --use_strict --async-stack-traces mirai"
   },
@@ -27,7 +27,7 @@
     "shahadat sahu",
     "shahadat chat bot"
   ],
-  "author": "SHAHADAT SAHU",
+  "author": "MR JUWEL",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/shahadat-sahu/SHAHADAT-CHAT-BOT/issues"

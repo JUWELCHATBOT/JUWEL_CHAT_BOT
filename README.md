@@ -11,7 +11,7 @@ Assalamualaikum Everyone!
 
 <p align="center" style="animation: glow 2s infinite alternate; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
   <span style="font-size: 24px; font-weight: bold;">JUWEL CHAT BOT</span><br>
-  <span> Develop By JUWEL SAHU</span>
+  <span> Develop By JUWEL</span>
 </p>
 
 _____
@@ -207,7 +207,7 @@ Please do not disturb the admin unless you have a special need. Thank you!
 ---
 
 💖 **Thank You For Choosing 𝗝𝘂𝘄𝗲𝗹 𝗖𝗵𝗮𝘁 𝗕𝗼𝘁!**  
-🗓️ *Release Date:* `11/08/2025 at 02:00`  
+🗓️ *Release Date:* `07/11/2025 at 02:00`  
 ⭐ **Please don't forget to give a star after forking! It really helps!**
 
 ---

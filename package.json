@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shahadat-sahu/SHAHADAT-CHAT-BOT.git"
+    "url": "https://github.com/JUWELCHATBOT/JUWEL_CHAT_BOT.git"
   },
   "keywords": [
     "bot",
@@ -30,9 +30,9 @@
   "author": "MR JUWEL",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shahadat-sahu/SHAHADAT-CHAT-BOT/issues"
+    "url": "https://github.com/JUWELCHATBOT/JUWEL_CHAT_BOT.git"
   },
-  "homepage": "https://github.com/shahadat-sahu/SHAHADAT-CHAT-BOT/issues",
+  "homepage": "https://github.com/JUWELCHATBOT/JUWEL_CHAT_BOT.git",
   "dependencies": {
     "@distube/ytdl-core": "^4.13.2",
     "@miraipr0ject/assets": "^1.0.9",

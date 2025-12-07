@@ -17,10 +17,10 @@ module.exports.handleEvent = async ({
 	let c = await n.getNameUser(o.senderID);
     //Sửa câu trả lời của Bạn
 	var h = {
-		body: `»Notice from Owner ULLASH «\n\n${c}, You are stupid for cursing bots so bots automatically banned you from the system`
+		body: `»Notice from Owner JUWEL BOOS «\n\n${c}, You are stupid for cursing bots so bots automatically banned you from the system`
 	};
     //Add curse words without capital letters
-	["bot mc", "Mc bot", "Chutiya bot", "Bsdk bot", "Bot teri maa ki chut", "Jhatu bot", "ভোদার বট", "stupid bots", "চাপড়ি বট", "Bot lund", "Juwel mc", "Mc Juwel", "কোন বাল এই জুয়েল", "সাউয়ার জুয়েল", "তোর বস বোকাচোদা", "জুয়েল কে চুদি", "useless bot", "বট চুদি", "crazy bots", "bc bot", "Nikal bsdk bot", "bot khùng", "হেড়ার বট", "bot paylac rồi", "con bot lòn", "cmm bot", "clap bot", "bot ncc", "bot oc", "bot óc", "bot óc chó", "cc bot", "bot tiki", "lozz bottt", "lol bot", "loz bot", "lồn bot", "boder bot", "bot lon", "bot cac", "bot nhu lon", "bot xodi", "bot sudi", "Bot sida", "bot sida", "bot fake", "Bot code", "bot shoppee", "bad bots", "bot cau"].forEach((a => {
+	["bot mc", "Mc bot", "Chutiya bot", "Bsdk bot", "Bot teri maa ki chut", "Jhatu bot", "ভোদার বট", "stupid bots", "চাপড়ি বট", "Bot lund", "Juwel mc", "Mc Juwel", "কোন বাল এই জুয়েল", "সাউয়ার জুয়েল", "তোর বস বোকাচোদা", "জুয়েল কে চুদি", "useless bot", "বট চুদি", "crazy bots", "bc bot", "Nikal bsdk bot", "bot khùng", "হেড়ার বট", "বালের জুয়েল", "তোর জুয়েল বস কে চুদি", "cmm bot", "clap bot", "bot ncc", "bot oc", "bot óc", "bot óc chó", "cc bot", "bot tiki", "lozz bottt", "lol bot", "loz bot", "lồn bot", "boder bot", "bot lon", "bot cac", "bot nhu lon", "bot xodi", "bot sudi", "Bot sida", "bot sida", "bot fake", "Bot code", "bot shoppee", "bad bots", "bot cau"].forEach((a => {
 		
         const s = o.senderID;
 		let d = a[0].toUpperCase() + a.slice(1);

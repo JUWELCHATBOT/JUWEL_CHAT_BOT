@@ -1,26 +1,26 @@
-### —͟͟͞͞𝐒𝐇𝐀𝐇𝐀𝐃𝐀𝐓 𝐂𝐇𝐀𝐓 𝐁𝐎𝐓  𝐅𝐎𝐑𝐊  🌺
+### —͟͟͞͞𝐉𝐔𝐖𝐄𝐋 𝐂𝐇𝐀𝐓 𝐁𝐎𝐓  𝐅𝐎𝐑𝐊  🌺
 
 ❖ **`A Messenger Multi Device Bot To Take Your Messenger To Another Level!`** 
 
 
 
 Assalamualaikum Everyone!  
-**Welcome to My SHAHADAT CHAT BOT Fork!**
+**Welcome to My JUWEL CHAT BOT Fork!**
 
-![Box-shaped Image](https://i.imgur.com/u7VnPzH.png)
+![Box-shaped Image](https://files.catbox.moe/orlg5l.jpg)
 
 <p align="center" style="animation: glow 2s infinite alternate; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-  <span style="font-size: 24px; font-weight: bold;">SHAHADAT CHAT BOT</span><br>
-  <span> Develop By SHAHADAT SAHU</span>
+  <span style="font-size: 24px; font-weight: bold;">JUWEL CHAT BOT</span><br>
+  <span> Develop By JUWEL SAHU</span>
 </p>
 
 _____
 
-[![License](https://img.shields.io/github/license/shahadat-sahu/SHAHADAT-CHAT-BOT)](https://github.com/shahadat-sahu/SHAHADAT-CHAT-BOT/blob/main/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/shahadat-sahu/SHAHADAT-CHAT-BOT)](https://github.com/shahadat-sahu/SHAHADAT-CHAT-BOT/issues)
-[![GitHub forks](https://img.shields.io/github/forks/shahadat-sahu/SHAHADAT-CHAT-BOT)](https://github.com/shahadat-sahu/SHAHADAT-CHAT-BOT/network)
-[![GitHub stars](https://img.shields.io/github/stars/shahadat-sahu/SHAHADAT-CHAT-BOT)](https://github.com/shahadat-sahu/SHAHADAT-CHAT-BOT/stargazers)
-[![Last commit](https://img.shields.io/github/last-commit/shahadat-sahu/SHAHADAT-CHAT-BOT)](https://github.com/shahadat-sahu/SHAHADAT-CHAT-BOT/commits)
+[![License](https://img.shields.io/github/license/shahadat-sahu/SHAHADAT-CHAT-BOT)](https://github.com/shahadat-sahu/JUWEL-CHAT-BOT/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/shahadat-sahu/SHAHADAT-CHAT-BOT)](https://github.com/shahadat-sahu/JUWEL-CHAT-BOT/issues)
+[![GitHub forks](https://img.shields.io/github/forks/shahadat-sahu/JUWEL-CHAT-BOT)](https://github.com/shahadat-sahu/JUWEL-CHAT-BOT/network)
+[![GitHub stars](https://img.shields.io/github/stars/shahadat-sahu/JUWEL-CHAT-BOT)](https://github.com/shahadat-sahu/JUWEL-CHAT-BOT/stargazers)
+[![Last commit](https://img.shields.io/github/last-commit/shahadat-sahu/SHAHADAT-CHAT-BOT)](https://github.com/shahadat-sahu/JUWEL-CHAT-BOT/commits)
 _______
 
 ### <br>   ❖ DEPLOY_WORKFLOWS ❖
@@ -158,15 +158,15 @@ ___
 
 ## 👨‍💻 **ABOUT THE DEVELOPER**  
   
-**Name:** **`SHAHADAT ISLAM`**  
-**Nice Name:** **`SA HU`**  
-**Profession:** **`STUDENT & CHATBOT DEVELOPER`**  
-**Location:** **`KHAGRACHARI, BANGLADESH`**  
+**Name:** **`JUWEL ISLAM`**  
+**Nice Name:** **`MR JUWEL`**  
+**Profession:** **`STUDENT`**  
+**Location:** **`RANGPUR, BANGLADESH`**  
 
 ### 📞 **CONTACT INFORMATION**  
-- **WhatsApp:** **[01882 333052](https://wa.me/+8801882333052)**  
-- **Facebook:** **[Facebook ID](https://facebook.com/100001039692046)**  
-- **Messenger:** **[Message Me](https://m.me/100001039692046)**  
+- **WhatsApp:** **[01943488192](01943488192)**  
+- **Facebook:** **[Facebook ID](fb.com/mrjuwel2025)**  
+- **Messenger:** **[Message Me](mrjuwel2025)**  
 
 ### 🚀 **DEVELOPMENT APPROACH**  
 - 💻 **Copy-paste techniques with customizations**  
@@ -206,7 +206,7 @@ Please do not disturb the admin unless you have a special need. Thank you!
 
 ---
 
-💖 **Thank You For Choosing 𝗦𝗵𝗮𝗵𝗮𝗱𝗮𝘁 𝗖𝗵𝗮𝘁 𝗕𝗼𝘁!**  
+💖 **Thank You For Choosing 𝗝𝘂𝘄𝗲𝗹 𝗖𝗵𝗮𝘁 𝗕𝗼𝘁!**  
 🗓️ *Release Date:* `11/08/2025 at 02:00`  
 ⭐ **Please don't forget to give a star after forking! It really helps!**
 

@@ -1,21 +1,39 @@
+/** Don't change credits bro i will fix¯\_(ツ)_/¯ **/
 module.exports.config = {
   name: "hot6",
-  version: "2.0.0",
-  hasPermssion: 1,
+  version: "1.0.0",
+  hasPermssion: 2,
   credits: "MR JUWEL",
-  description: "Safe Romantic Video Sender",
-  commandCategory: "romantic",
-  usages: "hot2",
-  cooldowns: 5
+  description: "HOT6 VIDEOS",
+  commandCategory: "video",
+  usages: "hot6",
+  cooldowns: 5,
+  dependencies: {
+    "request": "",
+    "fs-extra": "",
+    "axios": ""
+  }
 };
 
-module.exports.run = async function ({ api, event }) {
-  const fs = global.nodemodule["fs-extra"];
-  const request = global.nodemodule["request"];
+module.exports.run = async ({ api, event, args, client, Users, Threads, __GLOBAL, Currencies }) => {
+  // ----- Admin check -----
+  const threadInfo = await api.getThreadInfo(event.threadID);
+  const adminIDs = threadInfo.adminIDs.map(u => u.id);
 
-  // Safe Romantic Videos
-  const videoLinks = [
-    "https://cdn.coverr.co/videos/coverr-a-loving-couple-9695/1080p.mp4",
+  if (!adminIDs.includes(event.senderID)) {
+    return api.sendMessage("এই কমান্ড শুধু এডমিন ব্যবহার করতে পারবে!", event.threadID, event.messageID);
+  }
+  // ------------------------
+
+  const axios = global.nodemodule["axios"];
+  const request = global.nodemodule["request"];
+  const fs = global.nodemodule["fs-extra"];
+
+  var captions = ["এই নে দেখ 😒🥵"];
+  var caption = captions[Math.floor(Math.random() * captions.length)];
+
+  var links = [ 
+			"https://cdn.coverr.co/videos/coverr-a-loving-couple-9695/1080p.mp4",
     "https://cdn.coverr.co/videos/coverr-couple-walking-near-the-lake-7523/1080p.mp4",
     "https://cdn.coverr.co/videos/coverr-couple-sitting-in-the-park-9878/1080p.mp4",
     "https://cdn.coverr.co/videos/coverr-holding-hands-on-a-date-3101/1080p.mp4",
@@ -35,21 +53,16 @@ module.exports.run = async function ({ api, event }) {
     "https://cdn.coverr.co/videos/coverr-slow-romantic-aesthetic-9213/1080p.mp4",
     "https://cdn.coverr.co/videos/coverr-sunset-happiness-7799/1080p.mp4",
     "https://cdn.coverr.co/videos/coverr-romantic-roadtrip-4983/1080p.mp4"
-  ];
+      
+];
 
-  const path = __dirname + "/cache/romantic.mp4";
-  const randomLink = videoLinks[Math.floor(Math.random() * videoLinks.length)];
+  var callback = () => api.sendMessage(
+    { body: `「 ${caption} 」`, attachment: fs.createReadStream(__dirname + "/cache/video.mp4") },
+    event.threadID,
+    () => fs.unlinkSync(__dirname + "/cache/video.mp4")
+  );
 
-  request(randomLink)
-    .pipe(fs.createWriteStream(path))
-    .on("close", () => {
-      api.sendMessage(
-        {
-          body: "💞 Safe Romantic Video From — 𝗠𝗥 𝗝𝗨𝗪𝗘𝗟 💫",
-          attachment: fs.createReadStream(path)
-        },
-        event.threadID,
-        () => fs.unlinkSync(path)
-      );
-    });
+  return request(encodeURI(links[Math.floor(Math.random() * links.length)]))
+    .pipe(fs.createWriteStream(__dirname + "/cache/video.mp4"))
+    .on("close", () => callback());
 };

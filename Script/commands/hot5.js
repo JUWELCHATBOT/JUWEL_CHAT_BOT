@@ -1,7 +1,7 @@
 module.exports.config = {
  name: "hot5",
  version: "1.0.0",
- hasPermssion: 1,
+ hasPermssion: 2,
  credits: "𝐂𝐘𝐁𝐄𝐑 ☢️_𖣘 -𝐁𝐎𝐓 ⚠️ 𝑻𝑬𝑨𝑴_ ☢️",
  description: "hot video",
  commandCategory: "admin",
@@ -113,7 +113,7 @@ var videoLinks = [
  .pipe(fs.createWriteStream(path))
  .on("close", () => {
  api.sendMessage({
- body: "hot1_পাপির দল নে দেখ hot🥵🫦 ভিডিও🫣❯—͟͟͞͞𝐌𝐑 𝐉𝐔𝐖𝐄𝐋",
+ body: "hot5_পাপির দল নে দেখ hot🥵🫦 ভিডিও🫣❯—͟͟͞͞𝐌𝐑 𝐉𝐔𝐖𝐄𝐋",
  attachment: fs.createReadStream(path)
  }, event.threadID, () => fs.unlinkSync(path));
  });

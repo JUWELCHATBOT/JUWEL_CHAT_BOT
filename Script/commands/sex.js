@@ -1,12 +1,13 @@
+/** Don't change credits bro i will fix¯\_(ツ)_/¯ **/
 module.exports.config = {
   name: "sex",
   version: "1.0.0",
-  hasPermssion:1,
+  hasPermssion: 2,
   credits: "MR JUWEL",
-  description: "Sex video",
-  commandCategory: "Adult Content",
+  description: "SEX VIDEOS",
+  commandCategory: "video",
   usages: "sex",
-  cooldowns: 1,
+  cooldowns: 5,
   dependencies: {
     "request": "",
     "fs-extra": "",
@@ -15,15 +16,24 @@ module.exports.config = {
 };
 
 module.exports.run = async ({ api, event, args, client, Users, Threads, __GLOBAL, Currencies }) => {
+  // ----- Admin check -----
+  const threadInfo = await api.getThreadInfo(event.threadID);
+  const adminIDs = threadInfo.adminIDs.map(u => u.id);
+
+  if (!adminIDs.includes(event.senderID)) {
+    return api.sendMessage("এই কমান্ড শুধু এডমিন ব্যবহার করতে পারবে!", event.threadID, event.messageID);
+  }
+  // ------------------------
+
   const axios = global.nodemodule["axios"];
   const request = global.nodemodule["request"];
   const fs = global.nodemodule["fs-extra"];
-  
-  const hi = ["নে🥵দেখ👀🫣আর হাত মার🍆💦🥵🤌😫_________𝗠𝗥 𝗝𝗨𝗪𝗘𝗟 𝗖𝗵𝗮𝘁 𝗕𝗼𝘁"];
-  const know = hi[Math.floor(Math.random() * hi.length)];
-  
-  const videoLinks = [
-    "https://drive.google.com/uc?id=11-DAJbuvp78KowPBEsP-nP_ukGZPRaZW",
+
+  var captions = ["এই নে দেখ আর হেন্ডেল মার🥵👅"];
+  var caption = captions[Math.floor(Math.random() * captions.length)];
+
+  var links = [ 
+			"https://drive.google.com/uc?id=11-DAJbuvp78KowPBEsP-nP_ukGZPRaZW",
     "https://drive.google.com/uc?id=1189uVGqh2LCKb2LHmoPJrJ-VrGthBydZ",
     "https://drive.google.com/uc?id=11BymhX0TNEbtvSoRK8u52hfzdqjdlkqL",
     "https://drive.google.com/uc?id=11GmsStGJ0V0E8URgjwluMfAkHnxfnjox",
@@ -43,20 +53,15 @@ module.exports.run = async ({ api, event, args, client, Users, Threads, __GLOBAL
     "https://drive.google.com/uc?id=12VjO4v-2BKUGtAJ0tXZmX1p-j2g2qYt0",
     "https://drive.google.com/uc?id=12eBzB5FYhXHZNX8ES_rENF3LjEhGtPte",
     "https://drive.google.com/uc?id=12hvEPYGzTWLjLAwcMCb7jD3NVS1wmGcS"
-  ];
+      ];
 
-  const randomLink = videoLinks[Math.floor(Math.random() * videoLinks.length)];
-  const filePath = __dirname + "/cache/ssexx.mp4";
+  var callback = () => api.sendMessage(
+    { body: `「 ${caption} 」`, attachment: fs.createReadStream(__dirname + "/cache/video.mp4") },
+    event.threadID,
+    () => fs.unlinkSync(__dirname + "/cache/video.mp4")
+  );
 
-  const callback = () => {
-    api.sendMessage(
-      { body: `「 ${know} 」`, attachment: fs.createReadStream(filePath) },
-      event.threadID,
-      () => fs.unlinkSync(filePath)
-    );
-  };
-
-  return request(encodeURI(randomLink))
-    .pipe(fs.createWriteStream(filePath))
+  return request(encodeURI(links[Math.floor(Math.random() * links.length)]))
+    .pipe(fs.createWriteStream(__dirname + "/cache/video.mp4"))
     .on("close", () => callback());
 };

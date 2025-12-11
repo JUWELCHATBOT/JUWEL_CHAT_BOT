@@ -1,7 +1,7 @@
 module.exports.config = {
  name: "hot1",
  version: "1.0.0",
- hasPermssion: 1,
+ hasPermssion: 2,
  credits: "MR JUWEL",
  description: "hot video",
  commandCategory: "admin",

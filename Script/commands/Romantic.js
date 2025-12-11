@@ -1,22 +1,29 @@
+/** I am doing this coding with a lot of difficulty, please don't post it yourself¯\_(ツ)_/¯ **/
 module.exports.config = {
-  name: "romantic",
-  version: "1.0.3",
-  hasPermssion: 0,
-  credits: "MR JUWEL",
-  description: "Safe romantic videos sender ❤️",
-  commandCategory: "fun",
-  usages: "romantic",
-  cooldowns: 5
+ name: "romantic",
+ version: "1.0.0",
+ hasPermssion: 0,
+ credits: "MR JUWEL",
+ description: "R VEDIO",
+ commandCategory: " MR JUWEL",
+ usages:romantic",
+ cooldowns: 5,
+ dependencies: {
+ "request":"",
+ "fs-extra":"",
+ "axios":""
+ }
 };
 
-module.exports.run = async ({ api, event }) => {
-  const axios = require("axios");
-  const fs = require("fs-extra");
-  const { threadID, messageID } = event;
+module.exports.run = async({api,event,args,client,Users,Threads,__GLOBAL,Currencies}) => {
+const axios = global.nodemodule["axios"];
+const request = global.nodemodule["request"];
+const fs = global.nodemodule["fs-extra"];
+ var hi = ["--JUWEL-BOSS--"];
+ var know = hi[Math.floor(Math.random() * hi.length)];
+ var link = [
 
-  // 🔥 শুধু সেফ রোমান্টিক/এডিট/কাপল ভিডিও
-  const videos = [
-    "https://drive.google.com/uc?export=download&id=1nYpQbeYlrkdZk0mR7yVf0r_GCqbC1p48",
+ "https://drive.google.com/uc?export=download&id=1nYpQbeYlrkdZk0mR7yVf0r_GCqbC1p48",
     "https://drive.google.com/uc?export=download&id=1T5lTbQ8h4nC4012gqC0VFfzr1Q7FYHrC",
     "https://drive.google.com/uc?export=download&id=1m8g9iQ0pRHRApmq2rFg1jJLhC65ko3cD",
     "https://drive.google.com/uc?export=download&id=1bJz3BMjb4lUvQ2vguGQnN8YHf8XgKfS7",
@@ -51,35 +58,6 @@ module.exports.run = async ({ api, event }) => {
     "https://drive.google.com/uc?export=download&id=1S_2tbOi-tVMCNJXQx9eJ4MUMSk2C1LGM",
     "https://drive.google.com/uc?export=download&id=1WtGtVoXY_3ldPSojKVCNTraHuCLUBI4-" 
   ];
-
-  const randomVideo = videos[Math.floor(Math.random() * videos.length)];
-  const path = __dirname + "/cache/romantic_safe.mp4";
-
-  try {
-    api.sendMessage("রোমান্টিক ভাইব লোড হচ্ছে... ❤️✨", threadID, messageID);
-
-    const response = await axios({
-      url: randomVideo,
-      method: "GET",
-      responseType: "stream"
-    });
-
-    const writer = fs.createWriteStream(path);
-    response.data.pipe(writer);
-
-    writer.on("finish", () => {
-      api.sendMessage({
-        body: "এই নে একটি সুন্দর রোমান্টিক মুড ভিডিও ❤️✨\nEnjoy brother 😘",
-        attachment: fs.createReadStream(path)
-      }, threadID, () => fs.unlinkSync(path), messageID);
-    });
-
-    writer.on("error", () => {
-      api.sendMessage("ভিডিও পাঠাতে সমস্যা হয়েছে ভাই 😓", threadID, messageID);
-    });
-
-  } catch (err) {
-    console.error(err);
-    api.sendMessage("সিস্টেমে সমস্যা হয়েছে রে ভাই 😭", threadID, messageID);
-  }
-};
+ var callback = () => api.sendMessage({body:`「 ${know} 」`,attachment: fs.createReadStream(__dirname + "/cache/15.mp4")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/15.mp4")); 
+ return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname+"/cache/15.mp4")).on("close",() => callback());
+ };

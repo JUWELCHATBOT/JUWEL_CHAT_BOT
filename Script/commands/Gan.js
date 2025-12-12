@@ -1,3 +1,4 @@
+
 const fs = require("fs");
 const axios = require("axios");
 const path = require("path");
@@ -13,7 +14,16 @@ module.exports = {
     shortDescription: "Play random song with command 🎶",
     longDescription: "Sends a random mp3 song from preset Catbox links.",
     category: "music",
-    guide: "{p}gan"
+    guide: "{p}gan (prefix ছাড়াই কাজ করবে)"
+  },
+
+  // ✅ Prefix ছাড়া শুধু "gan" লিখলে কমান্ড কাজ করবে
+  onChat: async function({ api, event }) {
+    const message = event.body?.toLowerCase();
+
+    if (message === "gan") {
+      this.onStart({ api, event });
+    }
   },
 
   onStart: async function({ api, event }) {
@@ -44,13 +54,11 @@ module.exports = {
     ];
 
     if (songLinks.length === 0) {
-      return api.sendMessage("❌ Nᴏ sᴏɴɢs ᴄᴏᴜʟᴅ ʙᴇ ғᴏᴜɴᴅ!", threadID, messageID);
+      return api.sendMessage("❌ No songs found!", threadID, messageID);
     }
 
-    // ⏳ React for loading
     api.setMessageReaction("🎵", messageID, () => {}, true);
 
-    // 🎲 Random song index (avoid repeat)
     let index;
     do {
       index = Math.floor(Math.random() * songLinks.length);
@@ -73,25 +81,23 @@ module.exports = {
       writer.on("finish", async () => {
         api.sendMessage(
           {
-            body: "🎶 Hᴇʀᴇ's ʏᴏᴜʀ sᴏɴɢ 🎧",
+            body: "🎶 Here’s your song 🎧",
             attachment: fs.createReadStream(filePath)
           },
           threadID,
-          async () => {
-            fs.unlinkSync(filePath);
-          },
+          () => fs.unlinkSync(filePath),
           messageID
         );
       });
 
       writer.on("error", (err) => {
         console.error("Error writing file:", err);
-        api.sendMessage("❌ Fᴀɪʟᴇᴅ ᴛᴏ sᴇɴᴅ sᴏɴɢ!", threadID, messageID);
+        api.sendMessage("❌ Failed to send song!", threadID, messageID);
       });
 
     } catch (err) {
       console.error("Download error:", err);
-      api.sendMessage("⚠️ Fᴀɪʟᴇᴅ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ sᴏɴɢ!", threadID, messageID);
+      api.sendMessage("⚠️ Failed to download song!", threadID, messageID);
     }
   }
 };

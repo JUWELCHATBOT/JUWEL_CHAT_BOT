@@ -1,103 +1,119 @@
 
-const fs = require("fs");
+const fs = require("fs-extra");
 const axios = require("axios");
 const path = require("path");
 
 let lastPlayed = -1;
 
-module.exports = {
-  config: {
-    name: "gan",
-    version: "1.0.2",
-    role: 0,
-    author: "MOHAMMAD AKASH",
-    shortDescription: "Play random song with command 🎶",
-    longDescription: "Sends a random mp3 song from preset Catbox links.",
-    category: "music",
-    guide: "{p}gan (prefix ছাড়াই কাজ করবে)"
-  },
+module.exports.config = {
+  name: "gan",
+  version: "1.1.0",
+  hasPermission: 0,
+  credits: "MOHAMMAD AKASH (No Prefix by ChatGPT)",
+  description: "Play random song without prefix",
+  commandCategory: "music",
+  usages: "gan",
+  cooldowns: 5,
+};
 
-  // ✅ Prefix ছাড়া শুধু "gan" লিখলে কমান্ড কাজ করবে
-  onChat: async function({ api, event }) {
-    const message = event.body?.toLowerCase();
+async function playSong(api, event) {
+  const { threadID, messageID } = event;
 
-    if (message === "gan") {
-      this.onStart({ api, event });
-    }
-  },
+  const songLinks = [
+    "https://files.catbox.moe/etsdn9.mp3",
+    "https://files.catbox.moe/ayepdz.mp3",
+    "https://files.catbox.moe/oaecnx.mp3",
+    "https://files.catbox.moe/xtpf61.mp3",
+    "https://files.catbox.moe/12grz0.mp3",
+    "https://files.catbox.moe/aaqddo.mp3",
+    "https://files.catbox.moe/k3acvx.mp3",
+    "https://files.catbox.moe/nry1qv.mp3",
+    "https://files.catbox.moe/23e8u1.mp3",
+    "https://files.catbox.moe/y8dzik.mp3",
+    "https://files.catbox.moe/z9d2e6.mp3",
+    "https://files.catbox.moe/0xscc8.mp3",
+    "https://files.catbox.moe/q4m2ad.mp3",
+    "https://files.catbox.moe/y8bg4r.mp3",
+    "https://files.catbox.moe/q61co1.mp3",
+    "https://files.catbox.moe/euq7fo.mp3",
+    "https://files.catbox.moe/x5f56o.mp3",
+    "https://files.catbox.moe/avlqok.mp3",
+    "https://files.catbox.moe/v0twt3.mp3",
+    "https://files.catbox.moe/qmpvpt.mp3"
+  ];
 
-  onStart: async function({ api, event }) {
-    const { threadID, messageID } = event;
+  // 🎵 Reaction
+  api.setMessageReaction("🎶", messageID, () => {}, true);
 
-    const songLinks = [
-      "https://files.catbox.moe/etsdn9.mp3",
-      "https://files.catbox.moe/ayepdz.mp3",
-      "https://files.catbox.moe/oaecnx.mp3",
-      "https://files.catbox.moe/xtpf61.mp3",
-      "https://files.catbox.moe/12grz0.mp3",
-      "https://files.catbox.moe/aaqddo.mp3",
-      "https://files.catbox.moe/k3acvx.mp3",
-      "https://files.catbox.moe/nry1qv.mp3",
-      "https://files.catbox.moe/23e8u1.mp3",
-      "https://files.catbox.moe/y8dzik.mp3",
-      "https://files.catbox.moe/z9d2e6.mp3",
-      "https://files.catbox.moe/23e8u1.mp3",
-      "https://files.catbox.moe/0xscc8.mp3",
-      "https://files.catbox.moe/q4m2ad.mp3",
-      "https://files.catbox.moe/y8bg4r.mp3",
-      "https://files.catbox.moe/q61co1.mp3",
-      "https://files.catbox.moe/euq7fo.mp3",
-      "https://files.catbox.moe/x5f56o.mp3",
-      "https://files.catbox.moe/avlqok.mp3",
-      "https://files.catbox.moe/v0twt3.mp3",
-      "https://files.catbox.moe/qmpvpt.mp3"
-    ];
+  // 🎲 Random (no repeat)
+  let index;
+  do {
+    index = Math.floor(Math.random() * songLinks.length);
+  } while (index === lastPlayed && songLinks.length > 1);
+  lastPlayed = index;
 
-    if (songLinks.length === 0) {
-      return api.sendMessage("❌ No songs found!", threadID, messageID);
-    }
+  const songNumber = index + 1;
+  const url = songLinks[index];
 
-    api.setMessageReaction("🎵", messageID, () => {}, true);
+  const cacheDir = path.join(__dirname, "cache");
+  if (!fs.existsSync(cacheDir)) fs.mkdirSync(cacheDir, { recursive: true });
 
-    let index;
-    do {
-      index = Math.floor(Math.random() * songLinks.length);
-    } while (index === lastPlayed && songLinks.length > 1);
-    lastPlayed = index;
+  const filePath = path.join(
+    cacheDir,
+    `gan_${songNumber}_${Date.now()}.mp3`
+  );
 
-    const url = songLinks[index];
-    const filePath = path.join(__dirname, `/cache/song_${index}.mp3`);
+  try {
+    const res = await axios({
+      url,
+      method: "GET",
+      responseType: "stream",
+      timeout: 30000
+    });
 
-    try {
-      const response = await axios({
-        url,
-        method: "GET",
-        responseType: "stream"
-      });
+    const writer = fs.createWriteStream(filePath);
+    res.data.pipe(writer);
 
-      const writer = fs.createWriteStream(filePath);
-      response.data.pipe(writer);
+    writer.on("finish", () => {
+      api.sendMessage(
+        {
+          body:
+`🎧 𝗥𝗮𝗻𝗱𝗼𝗺 𝗦𝗼𝗻𝗴
 
-      writer.on("finish", async () => {
-        api.sendMessage(
-          {
-            body: "🎶 Here’s your song 🎧",
-            attachment: fs.createReadStream(filePath)
-          },
-          threadID,
-          () => fs.unlinkSync(filePath),
-          messageID
-        );
-      });
+🎵 Song No: ${songNumber}/${songLinks.length}
+🔀 Mode: No Prefix
 
-      writer.on("error", (err) => {
-        console.error("Error writing file:", err);
-        api.sendMessage("❌ Failed to send song!", threadID, messageID);
-      });
+Enjoy 🎶`,
+          attachment: fs.createReadStream(filePath)
+        },
+        threadID,
+        () => {
+          if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+        }
+      );
+    });
 
-    } catch (err) {
-      console.error("Download error:", err);
-      api.sendMessage("⚠️ Failed to download song!", threadID, messageID);
-    }
+  } catch (e) {
+    api.sendMessage("❌ গান পাঠাতে সমস্যা হয়েছে!", threadID);
   }
+}
+
+/**
+ * 🔥 NO PREFIX HANDLER
+ * শুধু "gan" লিখলেই কাজ করবে
+ */
+module.exports.handleEvent = async function ({ api, event }) {
+  if (!event.body) return;
+
+  const msg = event.body.trim().toLowerCase();
+  if (msg === "gan") {
+    return playSong(api, event);
+  }
+};
+
+/**
+ * 🔹 Prefix দিয়েও কাজ করবে (optional)
+ */
+module.exports.run = async function ({ api, event }) {
+  return playSong(api, event);
 };
